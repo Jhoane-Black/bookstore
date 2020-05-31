@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from webapp.model import models
-from webapp import serializers
+from . import serializers
 
 # Create your views here.
 class AuthorViewset(viewsets.ModelViewSet):
