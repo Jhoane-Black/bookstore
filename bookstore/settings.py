@@ -56,7 +56,7 @@ ROOT_URLCONF = 'bookstore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['webapp/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
