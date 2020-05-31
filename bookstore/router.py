@@ -1,4 +1,4 @@
-from webapp.views import AuthorViewset, BookViewset, ClientViewset, GenereViewset
+from webapp.view.views import AuthorViewset, BookViewset, ClientViewset, GenereViewset
 from rest_framework import routers
 
 router = routers.DefaultRouter()
