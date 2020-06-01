@@ -35,15 +35,13 @@ class Book_Author(models.Model):
 
 class Client(models.Model):
     cli_id = models.CharField(primary_key=True, max_length=20)
-    cli_nom = models.CharField(max_length=50)
-    cli_ape = models.CharField(max_length=50)
-    cli_pais = models.CharField(max_length=50)
-    cli_email = models.CharField(max_length=50)
-    cli_pass = models.CharField(max_length=50)
-    cli_cc = models.CharField(max_length=20)
-    cli_ccday = models.CharField(max_length=2)
-    cli_ccmonth = models.CharField(max_length=2)
-    cli_ccyear = models.CharField(max_length=4)
+    cli_nom = models.CharField(max_length=30, null=True)
+    cli_ape = models.CharField(max_length=150, null=True)
+    cli_email = models.CharField(max_length=254)
+    cli_cc = models.CharField(max_length=20, null=True)
+    cli_cc_fecha_expedicion = models.DateField(null=True)
+    def __str__(self):
+        return self.cli_nom
 
 class Payment(models.Model):
     pay_id = models.CharField(primary_key=True, max_length=10)

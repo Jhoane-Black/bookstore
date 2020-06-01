@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Mi Cuenta</title>
+
+<style>
+  .hello-msg{
+    font-size: 14px;
+    color:black;
+    margin-top: 20px;
+  }
+  .formulario {float:left;}
+  .msg{
+    font-size: 18px;
+    color: aliceblue;  
+    }
+</style>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <span class="hello-msg">Usuario: {{request.user}}</span>
+        <br>
+        <span class="hello-msg"><a href="{% url 'logout' %}">Cerrar Sesión</a></span>
+      </li>
+	</ul>
+  </nav>
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="info">
+          <span class="msg">Hola, {{client.cli_nom}}</span>
+        </div>
+      </div>
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Cliente</p>
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Genero</p>
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Libros</p>
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fas fa-circle nav-icon"></i>
+              <p>Cliente</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Mi Cuenta</h1>
+          </div>
+          </div>
+        </div>
+    </section>
+    <!-- Main content -->
+    <section class="content" >
+      <div class="container-fluid" class="formulario">
+        <div class="row">
+          <div class="col-md-7">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Mis Datos</h3>
+              </div>
+              <!-- form start -->
+              <form role="form" method="POST" action="{% url 'actualizarCliente' %}">
+                {% csrf_token %}
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="cli_cc">Cedula</label>
+                    <input type="text" class="form-control" name="cli_cc" value="{{client.cli_cc}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="cli_cc_fecha_expedicion">Fecha de expedicion</label>
+                    <input type="date" class="form-control" name="cli_cc_fecha_expedicion" value="{{client.cli_cc_fecha_expedicion|date:'Y-m-d'}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="cli_nom">Nombre</label>
+                    <input type="text" class="form-control" name="cli_nom" value="{{client.cli_nom}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="cli_ape">Apellido</label>
+                    <input type="text" class="form-control" name="cli_ape" value="{{client.cli_ape}}">
+                  </div>
+                  <div class="form-group">
+                    <label for="cli_email">Correo Electronico</label>
+                    <input type="email" class="form-control" name="cli_email" value="{{client.cli_email}}">
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+			  </div>
+      </div>
+    </section>
+  </div>
+  <footer class="main-footer">
+    <strong>Copyright Monica</strong>
+  </footer>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.js"></script>
+<!-- bs-custom-file-input -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bs-custom-file-input/1.3.4/bs-custom-file-input.min.js"></script>
+</body>
+</html>

@@ -16,11 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .router import router
-from webapp.view.views import registerPage, loginPage
+from webapp.view.views import registerPage, loginPage, home, logoutUser, actualizarCliente
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include(router.urls)),
     path('register',registerPage, name='register'),
-    path('login',loginPage, name='login')
+    path('login',loginPage, name='login'),
+    path('logout',logoutUser, name='logout'),
+    path('',home,name='home'),
+    path('actualizarCliente',actualizarCliente, name='actualizarCliente')
 ]
