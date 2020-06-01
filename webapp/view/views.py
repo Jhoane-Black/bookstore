@@ -77,7 +77,6 @@ def actualizarCliente(request):
     if request.method == 'POST':
         client.cli_nom = request.POST['cli_nom']
         client.cli_ape = request.POST['cli_ape']
-        client.cli_email = request.POST['cli_email']
         client.cli_cc = request.POST['cli_cc']
         client.cli_cc_fecha_expedicion = request.POST['cli_cc_fecha_expedicion']
         client.save()
