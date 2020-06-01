@@ -16,14 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .router import router
+from django.contrib.auth import views as auth_views
 from webapp.view.views import registerPage, loginPage, home, logoutUser, actualizarCliente
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include(router.urls)),
-    path('register',registerPage, name='register'),
-    path('login',loginPage, name='login'),
+    path('accounts/register',registerPage, name='register'),
+    path('accounts/login/',loginPage, name='login'),
     path('logout',logoutUser, name='logout'),
     path('',home,name='home'),
-    path('actualizarCliente',actualizarCliente, name='actualizarCliente')
+    path('actualizarCliente',actualizarCliente, name='actualizarCliente'),
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name="password/password_reset_form.html"), name="reset_password"),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="password/password_reset_done.html"), name="password_reset_done"),
+    path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name="password/password_reset_confirme.html"), name="password_reset_confirm"),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="password/password_reset_complete.html"), name="password_reset_complete"),
 ]
+
