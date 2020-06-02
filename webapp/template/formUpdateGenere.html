@@ -27,12 +27,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
@@ -57,13 +57,13 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="{% url 'home' %}" class="nav-link">
               <i class="fas fa-circle nav-icon"></i>
               <p>Cliente</p>
             </a>
           </li>
 		  <li class="nav-item">
-            <a href="{% url 'genere' %}" class="nav-link">
+            <a href="{% url 'genere' %}" class="nav-link active">
               <i class="fas fa-circle nav-icon"></i>
               <p>Genero</p>
             </a>
@@ -91,9 +91,9 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row mb-3">
           <div class="col-sm-6">
-            <h1>Mi Cuenta</h1>
+            <h1>Actualizar Genero</h1>
           </div>
           </div>
         </div>
@@ -102,39 +102,25 @@
     <section class="content" >
       <div class="container-fluid" class="formulario">
         <div class="row">
-          <div class="col-md-7">
+          <div class="col-md-4">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Mis Datos</h3>
+                <h3 class="card-title">Actualizar Generos</h3>
               </div>
               <!-- form start -->
-              <form role="form" method="POST" action="{% url 'actualizarCliente' %}">
+              <form role="form" method="POST" action="{% url 'UpdateGenere' %}">
                 {% csrf_token %}
                 <div class="card-body">
                   <div class="form-group">
-                    <label for="cli_cc">Cedula</label>
-                    <input type="text" class="form-control" name="cli_cc" value="{{client.cli_cc}}">
+                    <input type="hidden" class="form-control" name="gen_id" value="{{genere.gen_id}}">
                   </div>
                   <div class="form-group">
-                    <label for="cli_cc_fecha_expedicion">Fecha de expedicion</label>
-                    <input type="date" class="form-control" name="cli_cc_fecha_expedicion" value="{{client.cli_cc_fecha_expedicion|date:'Y-m-d'}}">
+                    <label for="gen_name">genero</label>
+                    <input type="text" class="form-control" name="gen_name" id="gen_name" value="{{genere.gen_name}}">
                   </div>
-                  <div class="form-group">
-                    <label for="cli_nom">Nombre</label>
-                    <input type="text" class="form-control" name="cli_nom" value="{{client.cli_nom}}">
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Actualizar Genero</button>
                   </div>
-                  <div class="form-group">
-                    <label for="cli_ape">Apellido</label>
-                    <input type="text" class="form-control" name="cli_ape" value="{{client.cli_ape}}">
-                  </div>
-                  <div class="form-group">
-                    <label for="cli_email">Correo Electronico</label>
-                    <input type="email" class="form-control" name="cli_email" value="{{client.cli_email}}" readonly="readonly">
-                  </div>
-                </div>
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Actualizar</button>
-                </div>
               </form>
             </div>
           </div>

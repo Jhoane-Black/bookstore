@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from .router import router
 from django.contrib.auth import views as auth_views
-from webapp.view.views import registerPage, loginPage, home, logoutUser, actualizarCliente
-
+from webapp.view.views import registerPage, loginPage, home, logoutUser, actualizarCliente, generePage, deleteGenere, formCreateGenere, CreateGenere, formUpdateGenere, UpdateGenere
+from webapp.view.views import bookPage, formCreateBook, CreateBook, deleteBook, formUpdateBook, UpdateBook
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include(router.urls)),
@@ -31,5 +31,17 @@ urlpatterns = [
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="password/password_reset_done.html"), name="password_reset_done"),
     path('reset/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name="password/password_reset_confirme.html"), name="password_reset_confirm"),
     path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="password/password_reset_complete.html"), name="password_reset_complete"),
+    path('genere',generePage, name='genere'),
+    path('deleteGenere',deleteGenere,name='deleteGenere'),
+    path('formCreateGenere', formCreateGenere, name='formCreateGenere'),
+    path('CreateGenere', CreateGenere, name='CreateGenere'),
+    path('formUpdateGenere', formUpdateGenere, name='formUpdateGenere'),
+    path('UpdateGenere', UpdateGenere, name='UpdateGenere'),
+    path('bookPage', bookPage, name='bookPage'),
+    path('formCreateBook', formCreateBook, name='formCreateBook'),
+    path('CreateBook', CreateBook, name='CreateBook'),
+    path('deleteBook', deleteBook, name='deleteBook'),
+    path('formUpdateBook', formUpdateBook, name='formUpdateBook'),
+    path('UpdateBook', UpdateBook, name='UpdateBook'),
 ]
 

@@ -8,8 +8,6 @@ class Book(models.Model):
     book_saga = models.CharField(max_length=50)
     book_price = models.DecimalField(max_digits=10, decimal_places=2)
     book_price_dis = models.DecimalField(max_digits=10, decimal_places=2)
-    def __str__(self):
-        return self.book_title
 
 class Genere(models.Model):
     gen_id = models.CharField(primary_key=True, max_length=10)

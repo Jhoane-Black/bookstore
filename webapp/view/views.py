@@ -71,9 +71,9 @@ def home(request):
     context={'client':client}
     return render(request, 'home.html', context)
 
+@login_required(login_url='login')
 def actualizarCliente(request):
     client = models.Client.objects.get(cli_email = request.user)
-    print(request.POST)
     if request.method == 'POST':
         client.cli_nom = request.POST['cli_nom']
         client.cli_ape = request.POST['cli_ape']
@@ -82,3 +82,96 @@ def actualizarCliente(request):
         client.save()
     context={'client':client}
     return redirect('home')
+
+@login_required(login_url='login')
+def generePage(request):
+    generos = models.Genere.objects.all()
+    context={'generos':generos}
+    print(context['generos'])
+    return render(request, 'genere.html', context)
+
+@login_required(login_url='login')
+def deleteGenere(request):
+    if request.method == 'POST':
+        models.Genere.objects.get(gen_id = request.POST['gen_id']).delete()
+    return redirect('genere')
+
+@login_required(login_url='login')
+def formCreateGenere(request):
+    context={}
+    return render(request, 'formCreateGenere.html',context )
+
+@login_required(login_url='login')
+def CreateGenere(request):
+    if request.method == 'POST':
+        genere = models.Genere(
+            gen_id = request.POST['gen_id'],
+            gen_name = request.POST['gen_name']
+        )
+        genere.save()
+    return redirect('genere')
+
+@login_required(login_url='login')
+def formUpdateGenere(request):
+    genere = models.Genere.objects.get(gen_id=request.POST['gen_id'])
+    context = {'genere':genere}
+    return render(request, 'formUpdateGenere.html',context)
+
+@login_required(login_url='login')
+def UpdateGenere(request):
+    print(request.POST['gen_id'])
+    if request.method == 'POST':
+        genere = models.Genere.objects.get(gen_id=request.POST['gen_id'])
+        genere.gen_name = request.POST['gen_name']
+        genere.save()
+    return redirect('genere')
+
+@login_required(login_url='login')
+def bookPage(request):
+    books = models.Book.objects.all()
+    context = {'books':books}
+    return render(request, 'book.html', context)
+
+@login_required(login_url='login')
+def formCreateBook(request):
+    context={}
+    return render(request, 'formCreateBook.html',context )
+
+@login_required(login_url='login')
+def CreateBook(request):
+    if request.method == 'POST':
+        Book = models.Book(
+            book_id = request.POST['book_id'],
+            book_title = request.POST['book_title'],
+            book_editorial = request.POST['book_editorial'],
+            book_saga = request.POST['book_saga'],
+            book_price = request.POST['book_price'],
+            book_price_dis = request.POST['book_price_dis']
+        )
+        Book.save()
+    return redirect('bookPage')
+
+@login_required(login_url='login')
+def deleteBook(request):
+    if request.method == 'POST':
+        models.Book.objects.get(book_id = request.POST['book_id']).delete()
+    return redirect('bookPage')
+
+@login_required(login_url='login')
+def formUpdateBook(request):
+    book = models.Book.objects.get(book_id=request.POST['book_id'])
+    context = {'book': book}
+    return render(request, 'formUpdateBook.html',context)
+
+@login_required(login_url='login')
+def UpdateBook(request):
+    print(request.POST['book_id'])
+    if request.method == 'POST':
+        book = models.Book.objects.get(book_id=request.POST['book_id'])
+        book.book_title = request.POST['book_title']
+        book.book_editorial = request.POST['book_editorial']
+        book.book_saga = request.POST['book_saga']
+        book.book_price = request.POST['book_price']
+        book.book_price_dis = request.POST['book_price_dis']
+        book.save()
+    return redirect('bookPage')
