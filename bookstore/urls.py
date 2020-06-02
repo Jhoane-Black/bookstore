@@ -18,7 +18,7 @@ from django.urls import path, include
 from .router import router
 from django.contrib.auth import views as auth_views
 from webapp.view.views import registerPage, loginPage, home, logoutUser, actualizarCliente, generePage, deleteGenere, formCreateGenere, CreateGenere, formUpdateGenere, UpdateGenere
-from webapp.view.views import bookPage, formCreateBook, CreateBook, deleteBook, formUpdateBook, UpdateBook
+from webapp.view.views import bookPage, formCreateBook, CreateBook, deleteBook, formUpdateBook, UpdateBook, authorPage, deleteAuthor, formCreateAuthor, CreateAuthor, formUpdateAuthor, UpdateAuthor
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include(router.urls)),
@@ -43,5 +43,11 @@ urlpatterns = [
     path('deleteBook', deleteBook, name='deleteBook'),
     path('formUpdateBook', formUpdateBook, name='formUpdateBook'),
     path('UpdateBook', UpdateBook, name='UpdateBook'),
+    path('authorPage', authorPage, name='authorPage'),
+    path('deleteAuthor', deleteAuthor, name='deleteAuthor'),
+    path('formCreateAuthor', formCreateAuthor, name='formCreateAuthor'),
+    path('CreateAuthor', CreateAuthor, name='CreateAuthor'),
+    path('formUpdateAuthor', formUpdateAuthor, name='formUpdateAuthor'),
+    path('UpdateAuthor', UpdateAuthor, name='UpdateAuthor'),
 ]
 

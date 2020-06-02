@@ -175,3 +175,46 @@ def UpdateBook(request):
         book.book_price_dis = request.POST['book_price_dis']
         book.save()
     return redirect('bookPage')
+
+#################################################
+@login_required(login_url='login')
+def authorPage(request):
+    authors = models.Author.objects.all()
+    context={'authors':authors}
+    return render(request, 'author.html', context)
+
+@login_required(login_url='login')
+def deleteAuthor(request):
+    if request.method == 'POST':
+        models.Author.objects.get(aut_id = request.POST['aut_id']).delete()
+    return redirect('authorPage')
+
+@login_required(login_url='login')
+def formCreateAuthor(request):
+    context={}
+    return render(request, 'formCreateAuthor.html',context )
+
+@login_required(login_url='login')
+def CreateAuthor(request):
+    if request.method == 'POST':
+        author = models.Author(
+            aut_id = request.POST['aut_id'],
+            aut_name = request.POST['aut_name']
+        )
+        author.save()
+    return redirect('authorPage')
+
+@login_required(login_url='login')
+def formUpdateAuthor(request):
+    author = models.Author.objects.get(aut_id=request.POST['aut_id'])
+    context = {'author':author}
+    return render(request, 'formUpdateAuthor.html',context)
+
+@login_required(login_url='login')
+def UpdateAuthor(request):
+    print(request.POST['aut_id'])
+    if request.method == 'POST':
+        author = models.Author.objects.get(aut_id=request.POST['aut_id'])
+        author.aut_name = request.POST['aut_name']
+        author.save()
+    return redirect('authorPage')

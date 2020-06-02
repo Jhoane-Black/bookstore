@@ -63,7 +63,7 @@
             </a>
           </li>
 		  <li class="nav-item">
-            <a href="{% url 'genere' %}" class="nav-link active">
+            <a href="{% url 'genere' %}" class="nav-link">
               <i class="fas fa-circle nav-icon"></i>
               <p>Genero</p>
             </a>
@@ -75,7 +75,7 @@
             </a>
           </li>
 		  <li class="nav-item">
-            <a href="{% url 'authorPage' %}" class="nav-link">
+            <a href="{% url 'authorPage' %}" class="nav-link active">
               <i class="fas fa-circle nav-icon"></i>
               <p>Autor</p>
             </a>
@@ -93,7 +93,7 @@
       <div class="container-fluid">
         <div class="row mb-3">
           <div class="col-sm-6">
-            <h1>Generos</h1>
+            <h1>Autores</h1>
           </div>
           </div>
         </div>
@@ -105,7 +105,7 @@
           <div class="col-md-4">
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Generos</h3>
+                <h3 class="card-title">Autores</h3>
               </div>
               <!-- form start -->
               <table class="table">
@@ -117,23 +117,23 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% for genere in generos %}
+                  {% for author in authors %}
                   <tr>
-                    <th scope="row">{{ genere.gen_id }}</th>
-                    <td>{{ genere.gen_name }}</td>
+                    <th scope="row">{{ author.aut_id }}</th>
+                    <td>{{ author.aut_name }}</td>
                     <td>
                       <div class="row">
                         <div class="col-md-2">
-                          <form action="formUpdateGenere" method="POST">
+                          <form action="formUpdateAuthor" method="POST">
                             {% csrf_token %}
-                            <input type="hidden" name="gen_id" id="gen_id" value="{{ genere.gen_id }}">
+                            <input type="hidden" name="aut_id" id="aut_id" value="{{ author.aut_id }}">
                             <button title="Actualizar" value="Actualizar" class="btn btn-primary"><i class="fa fa-refresh fa-xs" aria-hidden="true"></i></button>
                           </form>
                         </div>
                         <div class="col-md-2">
-                          <form action="deleteGenere" method="POST">
+                          <form action="deleteAuthor" method="POST">
                             {% csrf_token %}
-                            <input type="hidden" name="gen_id" id="gen_id" value="{{ genere.gen_id }}">
+                            <input type="hidden" name="aut_id" id="aut_id" value="{{ author.aut_id }}">
                             <button title="Eliminar" value="Eliminar" class="btn btn-danger"><i class="fa fa-times fa-xs" aria-hidden="true"></i></button>
                           </form>
                         </div>
@@ -143,7 +143,7 @@
                   {% endfor %}
                 </tbody>
               </table>
-              <a href="{% url 'formCreateGenere' %}" >Crear Genero</a>
+              <a href="{% url 'formCreateAuthor' %}" >Crear Autor</a>
             </div>
           </div>
 			  </div>
